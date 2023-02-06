@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VaagdeviModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="sno" Type="int" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="fee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Total_fee" Type="int" />
+          <Property Name="Amount_paid" Type="int" />
+          <Property Name="Pending_fee" Type="int" />
+          <Property Name="fee_status" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Applied_Physics" Type="int" />
+          <Property Name="Oop" Type="int" />
+          <Property Name="M1" Type="int" />
+          <Property Name="PS1" Type="int" />
+          <Property Name="EM1" Type="int" />
+          <Property Name="AED" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="percentag" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="sno" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="VaagdeviModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fee" EntityType="Self.fee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VaagdeviModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Applied_Physics" Type="Int32" />
+          <Property Name="Oop" Type="Int32" />
+          <Property Name="M1" Type="Int32" />
+          <Property Name="PS1" Type="Int32" />
+          <Property Name="EM1" Type="Int32" />
+          <Property Name="AED" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="percentag" Type="Int32" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="sno" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="VaagdeviEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Marks" EntityType="Self.Mark" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="Admins" EntityType="VaagdeviModel.Admin" />
+          <EntitySet Name="fees" EntityType="VaagdeviModel.fee" />
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="sno" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="fee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Total_fee" Type="Int32" />
+          <Property Name="Amount_paid" Type="Int32" />
+          <Property Name="Pending_fee" Type="Int32" />
+          <Property Name="fee_status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VaagdeviModelStoreContainer" CdmEntityContainer="VaagdeviEntities">
+          <EntitySetMapping Name="Marks">
+            <EntityTypeMapping TypeName="VaagdeviModel.Mark">
+              <MappingFragment StoreEntitySet="Marks">
+                <ScalarProperty Name="percentag" ColumnName="percentag" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Applied_Physics" ColumnName="Applied_Physics" />
+                <ScalarProperty Name="Oop" ColumnName="Oop" />
+                <ScalarProperty Name="M1" ColumnName="M1" />
+                <ScalarProperty Name="PS1" ColumnName="PS1" />
+                <ScalarProperty Name="EM1" ColumnName="EM1" />
+                <ScalarProperty Name="AED" ColumnName="AED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="VaagdeviModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="sno" ColumnName="sno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="VaagdeviModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="sno" ColumnName="sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fees">
+            <EntityTypeMapping TypeName="VaagdeviModel.fee">
+              <MappingFragment StoreEntitySet="fee">
+                <ScalarProperty Name="fee_status" ColumnName="fee_status" />
+                <ScalarProperty Name="Pending_fee" ColumnName="Pending_fee" />
+                <ScalarProperty Name="Amount_paid" ColumnName="Amount_paid" />
+                <ScalarProperty Name="Total_fee" ColumnName="Total_fee" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
